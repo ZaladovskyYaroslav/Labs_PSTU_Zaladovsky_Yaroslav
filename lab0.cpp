@@ -3,6 +3,6 @@ using namespace std;
 
 int main() 
 { 
-    cout << "Hello" << endl;
+    cout << "Merge Conflict" << endl;
     return 0;
 }
