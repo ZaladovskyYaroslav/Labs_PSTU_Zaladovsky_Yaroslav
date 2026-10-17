@@ -1,12 +1,11 @@
 #include <iostream>
 #include <cmath>       // Для возведения в степень
-#include <iomanip>     // Для управления количеством знаков после точки в действительных числах
-#include <windows.h>   // Для работы с кириллицей
+#include <iomanip>    // Для управления количеством знаков после точки в действительных числах
+#include <clocale>   // Для работы с кириллицей
 using namespace std;
 int main() {
     setlocale(LC_ALL, ".UTF8");
-    // Задание 1
-    // DOUBLE
+
     double a = 1000;
     double b = 0.0001;
     double num1, num2, num3, num4, num5;
@@ -17,7 +16,7 @@ int main() {
     num4 = 3 * a * pow(b, 2) + pow(b, 3);
     num5 = num3 / num4;
 
-    cout << fixed << setprecision(12) <<       // Для принудительного вывода 12 знаков после запятой
+    cout << fixed << setprecision(12) <<      // Для принудительного вывода 12 знаков после запятой
     // для наглядности погрешности
     "Первое действие: " << num1 << '\n' << 
     "Второе действие: " << num2 << '\n' << 
@@ -26,7 +25,6 @@ int main() {
     "Пятое действие: " << num5;
 
     return 0;
-
 }
 
 

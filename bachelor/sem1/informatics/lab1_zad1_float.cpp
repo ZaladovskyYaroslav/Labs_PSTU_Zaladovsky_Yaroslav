@@ -1,12 +1,11 @@
 #include <iostream>
 #include <cmath>       // Для возведения в степень
-#include <iomanip>     // Для управления количеством знаков после точки в действительных числах
-#include <windows.h>   // Для работы с кириллицей
+#include <iomanip>    // Для управления количеством знаков после точки в действительных числах
+#include <clocale>   // Для работы с кириллицей
 using namespace std;
 int main() {
     setlocale(LC_ALL, ".UTF8");
-    // Задание 1
-    // FLOAT
+
     float a = 1000;
     float b = 0.0001;
     float num1, num2, num3, num4, num5;
