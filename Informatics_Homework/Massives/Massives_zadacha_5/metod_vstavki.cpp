@@ -1,14 +1,3 @@
-// #include <iostream>
-// #include <clocale>
-// using namespace std;
-
-// int main() {
-//     setlocale(LC_ALL, ".UTF8");
-    
-
-    
-//     return 0;
-// }
 #include <iostream>
 #include <clocale>
 using namespace std;
@@ -28,7 +17,7 @@ int main() {
     }
 
     for (int i = 0; i < size(a); i++) {
-        cout << a[i] << '\n';
+        cout << a[i] << " ";
     }
 
     return 0;

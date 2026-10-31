@@ -10,7 +10,7 @@ int main(){
     int i = size(a) - 1;
 
     for(i; i >= 0; i--){
-        cout << a[i] << endl;
+        cout << a[i] << " ";
     }
     
     return 0;

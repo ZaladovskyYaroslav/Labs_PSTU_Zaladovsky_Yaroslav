@@ -16,7 +16,7 @@ int main() {
     }
 
     for(int i = 0; i < size(a); i++){
-        cout << a[i] << '\n';
+        cout << a[i] << " ";
     }
 
     return 0;

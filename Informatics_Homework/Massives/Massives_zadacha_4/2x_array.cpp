@@ -31,7 +31,7 @@ int main(){
         }
     }
 
-    cout << "Max: " << max << " | Index: [" << max_i << "][" << max_j << "]" << endl;
+    cout << "Max: " << max << " | Index: [" << max_i << "][" << max_j << "]" << '\n';
     cout << "Min: " << min << " | Index: [" << min_i << "][" << min_j << "]";
 
     return 0;
