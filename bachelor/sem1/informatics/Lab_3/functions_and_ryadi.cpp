@@ -41,7 +41,7 @@ int main() {
         // Нахождение точного значения функции
         double y = 2 * (pow(cos(x), 2) - 1);
 
-        cout << "X = " << x << setw(10) << " " << "SN = " << s_n << setw(10) << " " << "SE = " << s_e << setw(10) << " " << "Y = " << y << endl;
+        cout << fixed << setprecision(5) << "X = " << x << setw(10) <<  "SN = " << s_n << setw(5) << " " << "SE = " << s_e << setw(5) << " " << "Y = " << y << endl;
     }
 
     return 0;
