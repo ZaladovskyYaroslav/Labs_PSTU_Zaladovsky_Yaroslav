@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, ".UTF8");
 
-    int a[] = {45, 23, 567, 12, 895, 245, 56};
+    int a[] = {79, 4567, 223, 64, 8, 3888};
 
     for(int i = 0; i < size(a) - 1; i++){
         for(int j = 0; j < size(a) - 1 - i; j++){

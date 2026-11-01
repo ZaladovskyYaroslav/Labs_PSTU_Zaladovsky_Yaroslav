@@ -27,10 +27,10 @@ int main() {
             min = a[i];
             ind_min = i;
             num_min = ind_min + 1;
-            count_min = 1;
+            count_min = 1; // Обнуляем счётчик при нахождении нового минимума
         }
         else if(a[i] == min){
-            count_min++; // Обнуляем счётчик при нахождении нового минимума
+            count_min++;
         }
     }
 

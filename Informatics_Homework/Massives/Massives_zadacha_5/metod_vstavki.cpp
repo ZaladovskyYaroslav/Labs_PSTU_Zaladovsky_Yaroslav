@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    int a[] = {5, 2, 1, 6, 8, 9};
+    int a[] = {79, 4567, 223, 64, 8, 3888};
 
     for (int i = 1; i < size(a); i++) {
         int el = a[i];
