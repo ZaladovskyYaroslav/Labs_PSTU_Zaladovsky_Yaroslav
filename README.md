@@ -12,11 +12,12 @@
 ### Лабораторные работы
 |№|Название|Срок|Статус|
 |:---|:---:|:---:|:---:|
-|1|
-|2|
-|3|
+|1| Знакомство с Си++. Выполнение программы простой структуры | 25.10.2026 | Done |
+|2| Использование основных операторов языка СИ | 25.10.2026 | Done |
+|3| Вычисление функций с использованием их разложения в степенной ряд | 29.10.2026 | Done |
+|4| Работа с одномерными массивами | 02.11.2026 | Done |
 
-![JavaScript](https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=original)
+![Anarchist Sanctury](https://lonelyreally.github.io/git-test/albums/asteria/ASFRIDAYS/asteria,%20kets4eki%20-%20ASFRIDAYS.jpeg)
 
 
 
