@@ -22,7 +22,7 @@
 |7.2 | Функции с переменным числом параметров | 16.11.2026 |  Done |
 |8| Блоковый ввод-вывод | - |  Not yet |
 |9| Строковый ввод-вывод | - |  Not yet |
-|10| Динамические массивы | - |  Not yet |
+|10| Динамические массивы | 19.11.2026 |  Done |
 |11| Информационные динамические структуры | - |  Not yet |
 
 ![Anarchist Sanctury](https://lonelyreally.github.io/git-test/albums/asteria/ASFRIDAYS/asteria,%20kets4eki%20-%20ASFRIDAYS.jpeg)
