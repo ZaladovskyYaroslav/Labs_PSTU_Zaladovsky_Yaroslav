@@ -5,7 +5,7 @@ using namespace std;
 
 
 // Описание структуры "Стадион"
-struct Stadion {
+struct Stadion{
     char name[30];
     int year_of_building;
     int count_of_platforms;
@@ -14,7 +14,7 @@ struct Stadion {
 
 
 // Функция ввода данных с клавиатуры и создания одной структуры Stadion
-Stadion init_stadion() {
+Stadion init_stadion(){
     Stadion e{}; // Обнуляем все байты структуры, чтобы в файл не попал случайный мусор из памяти
 
     cout << "Введите название стадиона: ";
@@ -36,48 +36,48 @@ Stadion init_stadion() {
 
 
 // Функция вывода информации об одном стадионе на экран
-void print_stadion(const Stadion& s) {
+void print_stadion(const Stadion &s){
     cout << s.name << " | " << s.year_of_building << " г. | Площадок: " << s.count_of_platforms << " | Виды спорта: " << s.types_of_sports << endl;
 }
 
 
 // Функция первоначального формирования бинарного файла (запись n структур)
-void create_file(const char* filename, int n) {
-    FILE* f = fopen(filename, "wb"); // Открываем файл для бинарной записи (перезаписывает файл)
-    if (!f) {
+void create_file(const char *filename, int n){
+    FILE* f = fopen(filename, "wb"); // Открытие файла для бинарной записи
+    if (!f){
         cout << "Ошибка при открытии файла для записи!" << endl;
         return;
-    }
-
-    for (int i = 1; i <= n; i++) {
+    } 
+    
+    for(int i = 1; i <= n; i++){
         cout << "\nСтадион номер " << i << endl;
         Stadion s = init_stadion();
-        fwrite(&s, sizeof(Stadion), 1, f); // Записываем структуру в файл
+        fwrite(&s, sizeof(Stadion), 1, f); // Запись структуры в файл
     }
-
     fclose(f);
+
 }
 
 
 // Функция чтения и вывода всех структур из бинарного файла
-int print_file(const char* filename) {
+int print_file(const char *filename){
     FILE* f = fopen(filename, "rb"); // Открываем файл для бинарного чтения
-    if (!f) {
+    if (!f){
         cout << "Ошибка при открытии файла для чтения!" << endl;
         return 0;
     }
 
-    Stadion temp;
+    Stadion buf;
     int count = 0;
 
     // Считываем по одной структуре из файла, пока не дойдём до конца
-    while (fread(&temp, sizeof(Stadion), 1, f) == 1) {
+    while (fread(&buf, sizeof(Stadion), 1, f) > 0){
         count++;
         cout << count << ". ";
-        print_stadion(temp);
+        print_stadion(buf);
     }
 
-    if (count == 0) {
+    if (count == 0){
         cout << "Файл пуст." << endl;
     }
 
@@ -87,27 +87,27 @@ int print_file(const char* filename) {
 
 
 // Функция удаления стадионов, построенных раньше min_year, с помощью вспомогательного файла
-void delete_older_than(const char* filename, int min_year) {
-    const char* temp_filename = "temp.bin"; // Имя временного файла
+void delete_younger_than(const char *filename, int min_year){
+    const char *buf_filename = "buf.bin"; // Временный файл
 
-    FILE* f_in = fopen(filename, "rb");
-    if (!f_in) {
+    FILE *f_in = fopen(filename, "rb");
+    if (!f_in){
         cout << "Ошибка при открытии исходного файла!" << endl;
         return;
     }
 
-    FILE* f_out = fopen(temp_filename, "wb");
-    if (!f_out) {
+    FILE *f_out = fopen(buf_filename, "wb");
+    if (!f_out){
         cout << "Ошибка при создании вспомогательного файла!" << endl;
         fclose(f_in);
         return;
     }
 
-    Stadion temp;
-    // Переписываем во вспомогательный файл только подходящие по году стадионы
-    while (fread(&temp, sizeof(Stadion), 1, f_in) == 1) {
-        if (temp.year_of_building >= min_year) {
-            fwrite(&temp, sizeof(Stadion), 1, f_out);
+    Stadion buf;
+    // Переписываем в вспомогательный файл только подходящие по году стадионы
+    while (fread(&buf, sizeof(Stadion), 1, f_in) > 0){
+        if (buf.year_of_building >= min_year){
+            fwrite(&buf, sizeof(Stadion), 1, f_out);
         }
     }
 
@@ -116,38 +116,38 @@ void delete_older_than(const char* filename, int min_year) {
 
     // Удаляем старый файл и переименовываем вспомогательный на его место
     remove(filename);
-    rename(temp_filename, filename);
+    rename(buf_filename, filename);
 }
 
 
 // Функция вставки 2 новых стадионов перед элементом с номером target_pos
-void insert_two_before(const char* filename, int target_pos) {
-    const char* temp_filename = "temp.bin";
+void insert_two_before(const char *filename, int target_pos){
+    const char *buf_filename = "buf.bin";
 
-    FILE* f_in = fopen(filename, "rb");
-    if (!f_in) {
+    FILE *f_in = fopen(filename, "rb");
+    if (!f_in){
         cout << "Ошибка при открытии исходного файла!" << endl;
         return;
     }
 
-    FILE* f_out = fopen(temp_filename, "wb");
+    FILE *f_out = fopen(buf_filename, "wb");
     if (!f_out) {
         cout << "Ошибка при создании вспомогательного файла!" << endl;
         fclose(f_in);
         return;
     }
 
-    Stadion temp;
+    Stadion buf;
     int current_pos = 0;
     bool inserted = false;
 
-    while (fread(&temp, sizeof(Stadion), 1, f_in) == 1) {
+    while (fread(&buf, sizeof(Stadion), 1, f_in) > 0){
         current_pos++;
 
         // Перед указанным номером сначала записываем 2 новых стадиона
-        if (current_pos == target_pos) {
-            for (int i = 1; i <= 2; i++) {
-                cout << "\nВведите данные для нового стадиона #" << i << endl;
+        if (current_pos == target_pos){
+            for (int i = 1; i <= 2; i++){
+                cout << "\nВведите данные для нового стадиона №" << i << endl;
                 Stadion new_s = init_stadion();
                 fwrite(&new_s, sizeof(Stadion), 1, f_out);
             }
@@ -155,13 +155,13 @@ void insert_two_before(const char* filename, int target_pos) {
         }
 
         // Записываем текущий элемент из исходного файла
-        fwrite(&temp, sizeof(Stadion), 1, f_out);
+        fwrite(&buf, sizeof(Stadion), 1, f_out);
     }
 
     // Если исходный файл после удаления оказался пустым, записываем 2 новых стадиона в начало
-    if (!inserted && current_pos == 0) {
-        for (int i = 1; i <= 2; i++) {
-            cout << "\nВведите данные для нового стадиона #" << i << endl;
+    if (!inserted && current_pos == 0){
+        for (int i = 1; i <= 2; i++){
+            cout << "\nВведите данные для нового стадиона №" << i << endl;
             Stadion new_s = init_stadion();
             fwrite(&new_s, sizeof(Stadion), 1, f_out);
         }
@@ -172,22 +172,22 @@ void insert_two_before(const char* filename, int target_pos) {
 
     // Заменяем исходный файл обновлённым
     remove(filename);
-    rename(temp_filename, filename);
+    rename(buf_filename, filename);
 }
 
 
-int main() {
+int main(){
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
 
-    const char* filename = "stadions.txt";
+    const char *filename = "stadions.txt";
 
-    // Ввод начального количества записей
+    // Ввод начального количества стадионов
     int n;
     cout << "Введите количество стадионов: ";
     cin >> n;
 
-    while (n < 5) {
+    while (n < 5){
         cout << "Количество стадионов должно быть не менее 5. Попробуйте ещё раз: ";
         cin >> n;
     }
@@ -208,15 +208,15 @@ int main() {
 
     // Вставка 2 новых элементов перед выбранным стадионом
     int pos = 1;
-    if (remaining > 0) {
+    if (remaining > 0){
         cout << "\nВведите номер стадиона (от 1 до " << remaining << "), перед которым будут добавлены ещё 2 стадиона: ";
         cin >> pos;
 
-        while (pos < 1 || pos > remaining) {
+        while (pos < 1 || pos > remaining){
             cout << "Некорректный номер! Введите число от 1 до " << remaining << ": ";
             cin >> pos;
         }
-    } else {
+    } else{
         cout << "\nВсе стадионы были удалены. Новые 2 стадиона будут добавлены в файл.\n";
     }
 
