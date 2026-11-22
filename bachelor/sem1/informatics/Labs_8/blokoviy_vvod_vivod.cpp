@@ -202,7 +202,7 @@ int main(){
     cout << "\nВведите необходимый год (стадионы, построенные раньше этого года, будут удалены): ";
     cin >> y;
 
-    delete_older_than(filename, y);
+    delete_younger_than(filename, y);
     cout << "\nСписок после удаления старых стадионов:\n";
     int remaining = print_file(filename);
 
